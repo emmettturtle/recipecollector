@@ -9,6 +9,11 @@
         <p>Ingredients: {{ recipe.ingredients }}</p>
         <p>Directions: {{ recipe.directions }} </p>
     </div>
+
+    <div class="card-action">
+        <a href="{% url 'recipes_update' recipe.id %}">Edit</a>
+        <a href="{% url 'recipes_delete' recipe.id %}">Delete</a>
+    </div>
 </div>
 
 {% endblock %}
