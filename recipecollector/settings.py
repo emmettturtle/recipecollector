@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'recipecollector.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'catcollector',
+        'NAME': 'recipecollector',
         'USER': 'emmettverba',
         'PASSWORD': 'wDYPzhHek6i9',
         'HOST': 'ep-bitter-voice-61777553.us-west-2.aws.neon.tech',
