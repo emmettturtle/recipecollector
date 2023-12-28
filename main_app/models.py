@@ -1,20 +1,32 @@
 from django.db import models
 from django.urls import reverse
 
-# Create your models here.
+class Ingredient(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('ingredients_detail', kwargs={'pk': self.id})
+
+
 class Recipe(models.Model):
     title = models.CharField(max_length=100)
     ingredients = models.TextField(max_length=300)
     directions = models.TextField(max_length=500)
+    ingredients = models.ManyToManyField(Ingredient)
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'recipe_id': self.id})
     
     def avg_rating(self):
-        total_rating = 0
-        for comment in self.comment_set.all():
-            total_rating += comment.rating
-        avg = total_rating/self.comment_set.all().count()
+        avg = 0
+        if self.comment_set.all().count() > 0:
+            total_rating = 0
+            for comment in self.comment_set.all():
+                total_rating += comment.rating
+            avg = total_rating/self.comment_set.all().count()
         return avg
         
     
